@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>T2A1-B.MD</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="t2a1-bworkbook">T2A1-B_workbook</h1>
+<h3 id="q1-identify-and-explain-the-workings-of-two-sorting-algorithms-and-discuss-and-compare-their-performanceefficiency-ie-big-o">Q1. Identify and explain the workings of TWO sorting algorithms and discuss and compare their performance/efficiency (i.e. Big O)</h3>
+<hr>
+<p>Sorting algorithms in computer science used to manage data by sorting it in a specified order. Commonly used sorting algorithem are Bubble sort, Quick sort, Merge sortm insertion sort, Selection sort, etc.. Today the two sorting algorithm we will disscuss are Bubble sort and Merge sort.</p>
+<h3 id="bubble-sort">Bubble Sort</h3>
+<p>The Bubble sort algorithm is a very basic algorithm. Basically it iterates over each element of the array and compares it to its neighbors, then swaps the elements if they are not in order, repeat again until no swaping needed. The Big O complexity of Bubble sort is O(n<sup>2</sup>).
+<img src="file:///root/coder/T2/T2A1/pic/Bubble.png" alt="">
+Example in ruby:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(array)</span></span>
+    len = array.length
+    swapped = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">while</span> swap <span class="hljs-keyword">do</span>
+      swapped = <span class="hljs-literal">false</span>
+      (len - <span class="hljs-number">1</span>).times <span class="hljs-keyword">do</span> <span class="hljs-params">|a|</span>
+        <span class="hljs-keyword">if</span> array[a] &gt; array[a + <span class="hljs-number">1</span>]
+          array[x], array[a + <span class="hljs-number">1</span>] = array[a + <span class="hljs-number">1</span>], array[a]
+      swapped = <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span> 
+    <span class="hljs-keyword">return</span> array
+<span class="hljs-keyword">end</span>
+
+pp bubble_sort([<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>])
+<span class="hljs-comment"># =&gt; [3,4,6,7]</span>
+</div></code></pre>
+<h3 id="merge-sort">Merge Sort</h3>
+<p>Merge sort algorithm is another algorithm that decomposes an array into two or more subarrays, then sorts each subarray individually, and then merges all subarrays into a single sorted array. Merge sort Big O complexity is O(n logn).
+<img src="file:///root/coder/T2/T2A1/pic/Merge.png" alt=""></p>
+<p>Example in ruby:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(array)</span></span>
+  <span class="hljs-keyword">if</span> array.length &lt;= <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> array
+  <span class="hljs-keyword">end</span>
+
+  array_size = array.length
+  middle = (array.length / <span class="hljs-number">2</span>).round
+
+  left_side = array[<span class="hljs-number">0</span>...middle]
+  right_side = array[middle...array_size]
+
+  sorted_left = merge_sort(left_side)
+  sorted_right = merge_sort(right_side)
+
+  merge(array, sorted_left, sorted_right)
+
+  <span class="hljs-keyword">return</span> array
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge</span><span class="hljs-params">(array, sorted_left, sorted_right)</span></span>
+  left_size = sorted_left.length
+  right_size = sorted_right.length
+
+  array_pointer = <span class="hljs-number">0</span>
+  left_pointer = <span class="hljs-number">0</span>
+  right_pointer = <span class="hljs-number">0</span>
+
+  <span class="hljs-keyword">while</span> left_pointer &lt; left_size &amp;&amp; right_pointer &lt; right_size
+    <span class="hljs-keyword">if</span> sorted_left[left_pointer] &lt; sorted_right[right_pointer]
+      array[array_pointer] = sorted_left[left_pointer]
+      left_pointer += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>
+      array[array_pointer] = sorted_right[right_pointer]
+      right_pointer += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">end</span>
+    array_pointer += <span class="hljs-number">1</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">while</span> left_pointer &lt; left_size
+      array[array_pointer] = sorted_left[left_pointer]
+      left_pointer += <span class="hljs-number">1</span>
+      array_pointer += <span class="hljs-number">1</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">while</span> right_pointer &lt; right_size
+     array[array_pointer] = sorted_right[right_pointer]
+     right_pointer += <span class="hljs-number">1</span>
+     array_pointer += <span class="hljs-number">1</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">return</span> array
+<span class="hljs-keyword">end</span>
+
+pp merge_sort([<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>])
+<span class="hljs-comment"># =&gt; [1,2,3,4,5,6,7]</span>
+</div></code></pre>
+<p>Compare these two algorithms, the Bubble algorithm complexity is <code>O(n&lt;sup&gt;2&lt;/sup&gt;)</code>, it's sample and used for the small amount of data. The Merge sort algorithm complexity is<code> O(n logn)</code>, it's more effective for the large amount of data.</p>
+<p>References</p>
+<ol>
+<li>Andrew S.(16/07/2021), Medium, Bubble Sort, viewed 19 Feb 2022, https://medium.com/austins-software-engineering-journey/bubble-sort-b2f0d63e38f7</li>
+<li>Megan(15/04/2020), DEV, Merge Sort in Ruby, viewed 19 Feb 2022, https://dev.to/mwong068/merge-sort-in-ruby-28n1</li>
+<li>Gupta V.(16/07/2021), Medium, Visualizing, Designing, and Analyzing the Merge Sort Algorithm., viewed 19 Feb 2022, https://levelup.gitconnected.com/visualizing-designing-and-analyzing-the-merge-sort-algorithm-cf17e3f0371f</li>
+</ol>
+<h3 id="identify-and-explain-the-workings-of-two-search-algorithms-and-discuss-and-compare-their-performanceefficiency-ie-big-o">Identify and explain the workings of TWO search algorithms and discuss and compare their performance/efficiency (i.e. Big O)</h3>
+<hr>
+<p>Search algrithoms is an algorithm which solves a search problem. It can be classified into two types, which are swquential search and Interval search. Two search algorithms we will disscuss are Linear Search and Binary Search.</p>
+<h3 id="linear-search">Linear Search</h3>
+<p>Linear search is a kind of sequential search that works by checking every element of an array in a list without skipping any elements. The Big O complexity of Linear search is O(n).</p>
+<p><img src="file:///root/coder/T2/T2A1/pic/Linear.png" alt="">
+Example in ruby:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">linear_search</span><span class="hljs-params">(target, array)</span></span>
+  counter = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">while</span> counter &lt; array.length
+    <span class="hljs-keyword">if</span> array[counter] == target
+      <span class="hljs-keyword">return</span> counter
+    <span class="hljs-keyword">else</span>
+      counter += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+<span class="hljs-keyword">end</span>
+
+pp linear_search(<span class="hljs-number">20</span>, [<span class="hljs-number">10</span>,<span class="hljs-number">50</span>,<span class="hljs-number">30</span>,<span class="hljs-number">70</span>,<span class="hljs-number">80</span>,<span class="hljs-number">60</span>,<span class="hljs-number">20</span>,<span class="hljs-number">90</span>,<span class="hljs-number">40</span>])
+<span class="hljs-comment"># =&gt; 6</span>
+</div></code></pre>
+<h3 id="binary-search">Binary Search</h3>
+<p>Binary search is a kind of interval search that can only find the target element's position in a sorted array. It works by 3 steps:</p>
+<ol>
+<li>Compare the target element and the middle element of the array.</li>
+<li>If the middle element is larger than the target element, only the right half of the array is checked. If the middle element is smaller than the target element, only the left half of the array is checked.</li>
+<li>Repeat step 2 until the array can not be halved anymore, or find the position.</li>
+</ol>
+<p>The Big O complexity of Binary search is O(log n).</p>
+<p><img src="file:///root/coder/T2/T2A1/pic/Binary.png" alt="">
+Example in ruby:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search</span><span class="hljs-params">(target, array)</span></span>
+  low = <span class="hljs-number">0</span>
+  high = array.length - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">while</span> low &lt;= high
+    mid = (low + high) / <span class="hljs-number">2</span>
+    <span class="hljs-keyword">if</span> target &gt; array[mid]
+      low = mid + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">elsif</span> target &lt; array[mid]
+      high = mid - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-keyword">return</span> mid
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+pp binary_search(<span class="hljs-number">23</span>, [<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">12</span>,<span class="hljs-number">16</span>,<span class="hljs-number">23</span>,<span class="hljs-number">38</span>,<span class="hljs-number">56</span>,<span class="hljs-number">72</span>,<span class="hljs-number">91</span>])
+<span class="hljs-comment"># =&gt; 6</span>
+</div></code></pre>
+<p>References</p>
+<ol>
+<li>Andrew S.(11/05/2017), Medium, Binary Search Implementation in Ruby, viewed 19 Feb 2022, https://medium.com/@andrewsouthard1/binary-search-implementation-in-ruby-9636a4bf373c</li>
+<li>27/01/2020, FreeCodeCamp, Linear Search Explained, viewed 19 Feb 2022, https://www.freecodecamp.org/news/linear-search/</li>
+<li>29/11/2021, GeeksforGeeks, Searching Algorithms, viewed 19 Feb 2022,https://www.geeksforgeeks.org/searching-algorithms/</li>
+</ol>
+
+</body>
+</html>
